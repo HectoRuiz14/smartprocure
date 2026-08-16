@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reportes - SmartPro B2B</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-50 text-gray-800 font-sans antialiased">
+    <div class="flex h-screen overflow-hidden">
+        
+        <!-- Sidebar -->
+        <aside class="w-64 bg-slate-900 text-white flex flex-col">
+            <div class="p-6">
+                <h1 class="text-2xl font-bold tracking-tight text-blue-400">SmartPro B2B</h1>
+                <p class="text-xs text-slate-400 mt-1">Panel de Administrador</p>
+            </div>
+            <nav class="flex-1 px-4 space-y-2">
+                <a href="index.html" class="block px-4 py-3 hover:bg-slate-800 rounded-lg text-sm font-medium transition-colors">Licitaciones Activas</a>
+                <a href="directorio.html" class="block px-4 py-3 hover:bg-slate-800 rounded-lg text-sm font-medium transition-colors">Directorio Proveedores</a>
+                <a href="reportes.html" class="block px-4 py-3 bg-blue-600 rounded-lg text-sm font-medium transition-colors">Reportes Financieros</a>
+            </nav>
+            <div class="p-4 border-t border-slate-700">
+                <div class="flex items-center gap-3">
+                    <div class="w-8 h-8 rounded-full bg-blue-500 flex items-center justify-center font-bold">H</div>
+                    <div class="text-sm">
+                        <p class="font-medium">Héctor Ruiz</p>
+                        <p class="text-xs text-slate-400">Comprador</p>
+                    </div>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Contenido Central: Reportes -->
+        <main class="flex-1 flex flex-col h-screen overflow-y-auto bg-gray-50">
+            <!-- Header -->
+            <header class="bg-white shadow-sm border-b border-gray-200 px-8 py-4 flex justify-between items-center z-10">
+                <h2 class="text-xl font-semibold text-gray-800">Panel de Control Financiero</h2>
+                <!-- Botón con ID agregado para la interactividad -->
+                <button id="btnDescargar" class="bg-blue-600 hover:bg-blue-700 text-white px-5 py-2 rounded-lg text-sm font-medium transition-all duration-300">
+                    Descargar Reporte Mensual PDF
+                </button>
+            </header>
+
+            <div class="p-8">
+                <!-- Título de la sección -->
+                <div class="mb-6">
+                    <h3 class="text-2xl font-bold text-gray-800">Métricas de Ahorro y Compras</h3>
+                    <p class="text-sm text-gray-500">Resumen financiero del mes en curso</p>
+                </div>
+
+                <!-- Tarjetas de Resumen (KPIs) -->
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <!-- Tarjeta 1: Ahorro -->
+                    <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-200 border-l-4 border-l-green-500 hover:shadow-md transition">
+                        <p class="text-sm font-medium text-gray-500 mb-1">Ahorro Generado (Algoritmo)</p>
+                        <h4 class="text-3xl font-bold text-gray-900">$1.450.000</h4>
+                        <p class="text-xs text-green-600 mt-2 font-medium">↑ 12% respecto al mes anterior</p>
+                    </div>
+
+                    <!-- Tarjeta 2: Gasto Total -->
+                    <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-200 border-l-4 border-l-blue-500 hover:shadow-md transition">
+                        <p class="text-sm font-medium text-gray-500 mb-1">Total Adjudicado</p>
+                        <h4 class="text-3xl font-bold text-gray-900">$8.320.000</h4>
+                        <p class="text-xs text-gray-400 mt-2">En 5 órdenes de compra</p>
+                    </div>
+
+                    <!-- Tarjeta 3: Eficiencia -->
+                    <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-200 border-l-4 border-l-purple-500 hover:shadow-md transition">
+                        <p class="text-sm font-medium text-gray-500 mb-1">Tiempo Medio de Respuesta</p>
+                        <h4 class="text-3xl font-bold text-gray-900">45 min</h4>
+                        <p class="text-xs text-purple-600 mt-2 font-medium">Proveedores vía Enlace Tokenizado</p>
+                    </div>
+                </div>
+
+                <!-- Historial Reciente de PDFs -->
+                <div class="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden mt-8">
+                    <div class="p-6 border-b border-gray-200 bg-gray-50">
+                        <h3 class="text-lg font-semibold text-gray-800">Últimas Órdenes de Compra y Soportes</h3>
+                    </div>
+                    
+                    <!-- Estado vacío amigable (Empty State) -->
+                    <div class="p-12 text-center flex flex-col items-center justify-center">
+                        <svg class="h-16 w-16 text-gray-300 mb-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                        </svg>
+                        <p class="text-gray-500 text-sm max-w-sm">
+                            El historial de PDFs autogenerados con los soportes legales para tesorería aparecerá aquí en cuanto cierres una licitación.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Script de interactividad para la simulación de descarga -->
+    <script>
+        const btnDescargar = document.getElementById('btnDescargar');
+        
+        if(btnDescargar) {
+            btnDescargar.addEventListener('click', function() {
+                // 1. Estado de carga: Cambiamos el color a gris y el texto
+                this.innerHTML = 'Generando archivo...';
+                this.classList.remove('bg-blue-600', 'hover:bg-blue-700');
+                this.classList.add('bg-gray-500', 'cursor-wait');
+                
+                // 2. Simulamos 1.5 segundos de procesamiento en el backend
+                setTimeout(() => {
+                    // Estado de éxito: Cambiamos el color a verde y el texto
+                    this.innerHTML = '¡Reporte Descargado!';
+                    this.classList.remove('bg-gray-500', 'cursor-wait');
+                    this.classList.add('bg-green-600', 'hover:bg-green-700');
+                    
+                    // 3. Volvemos al estado original después de 3 segundos
+                    setTimeout(() => {
+                        this.innerHTML = 'Descargar Reporte Mensual PDF';
+                        this.classList.remove('bg-green-600', 'hover:bg-green-700');
+                        this.classList.add('bg-blue-600', 'hover:bg-blue-700');
+                    }, 3000);
+                    
+                }, 1500);
+            });
+        }
+    </script>
+</body>
+</html>
