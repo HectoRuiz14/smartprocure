@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Licitaciones - SmartPro B2B</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-50 text-gray-800 font-sans antialiased">
+    <div class="flex h-screen overflow-hidden">
+        
+        <!-- Sidebar -->
+        <aside class="w-64 bg-slate-900 text-white flex flex-col">
+            <div class="p-6">
+                <h1 class="text-2xl font-bold tracking-tight text-blue-400">SmartPro B2B</h1>
+                <p class="text-xs text-slate-400 mt-1">Panel de Administrador</p>
+            </div>
+            <nav class="flex-1 px-4 space-y-2">
+                <a href="index.html" class="block px-4 py-3 bg-blue-600 rounded-lg text-sm font-medium transition-colors">Licitaciones Activas</a>
+                <a href="directorio.html" class="block px-4 py-3 hover:bg-slate-800 rounded-lg text-sm font-medium transition-colors">Directorio Proveedores</a>
+                <a href="reportes.html" class="block px-4 py-3 hover:bg-slate-800 rounded-lg text-sm font-medium transition-colors">Reportes Financieros</a>
+            </nav>
+            <div class="p-4 border-t border-slate-700">
+                <div class="flex items-center gap-3">
+                    <div class="w-8 h-8 rounded-full bg-blue-500 flex items-center justify-center font-bold">H</div>
+                    <div class="text-sm">
+                        <p class="font-medium">Héctor Ruiz</p>
+                        <p class="text-xs text-slate-400">Comprador</p>
+                    </div>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Contenido Central -->
+        <main class="flex-1 flex flex-col h-screen overflow-y-auto bg-gray-50">
+            <header class="bg-white shadow-sm border-b border-gray-200 px-8 py-4 flex justify-between items-center z-10">
+                <h2 class="text-xl font-semibold text-gray-800">Cotización Papelería Julio</h2>
+                <button class="bg-blue-600 hover:bg-blue-700 text-white px-5 py-2 rounded-lg text-sm font-medium">
+                    + Crear Nueva Licitación
+                </button>
+            </header>
+
+            <div class="p-8">
+                <div class="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden mb-12">
+                    <div class="px-6 py-4 border-b border-gray-200 bg-gray-50 flex justify-between items-center">
+                        <h3 class="text-lg font-semibold text-gray-800">Comparativa de Ofertas Recibidas (3/3)</h3>
+                        <span class="bg-green-100 text-green-700 text-xs px-3 py-1 rounded-full font-semibold">Análisis Completado</span>
+                    </div>
+                    
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-left border-collapse">
+                            <thead>
+                                <tr class="text-sm text-gray-500 bg-white border-b border-gray-200">
+                                    <th class="p-4 font-medium">Producto Solicitado</th>
+                                    <th class="p-4 font-medium text-center">Ferretería El Cóndor</th>
+                                    <th class="p-4 font-bold text-center text-blue-700 bg-blue-50">Papelería Universal</th>
+                                </tr>
+                            </thead>
+                            <tbody class="text-sm text-gray-700">
+                                <tr class="border-b border-gray-100">
+                                    <td class="p-4 font-medium text-gray-900">100x Resmas de Papel Carta</td>
+                                    <td class="p-4 text-center">$1.600.000</td>
+                                    <td class="p-4 text-center bg-green-50 text-green-700 font-semibold border-x border-green-200">$1.500.000</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    
+                    <!-- Botón con ID agregado -->
+                    <div class="p-6 bg-white border-t border-gray-200 flex justify-end gap-4">
+                        <button class="px-5 py-2 text-gray-600 bg-gray-100 hover:bg-gray-200 rounded-lg text-sm font-medium transition">Rechazar Todas</button>
+                        <button id="btnAprobar" class="px-5 py-2 bg-green-600 hover:bg-green-700 text-white rounded-lg text-sm font-medium shadow-sm transition">Aprobar y Autogenerar PDF</button>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Script de interactividad -->
+    <script>
+        const btnAprobar = document.getElementById('btnAprobar');
+        
+        if(btnAprobar) {
+            btnAprobar.addEventListener('click', function() {
+                // Cambia a estado de carga
+                this.textContent = 'Procesando PDF...';
+                this.classList.remove('bg-green-600', 'hover:bg-green-700');
+                this.classList.add('bg-gray-400', 'cursor-not-allowed');
+                
+                // Simula 2 segundos de carga y muestra el éxito
+                setTimeout(() => {
+                    this.textContent = '¡PDF Generado y Guardado!';
+                    this.classList.remove('bg-gray-400', 'cursor-not-allowed');
+                    this.classList.add('bg-blue-600', 'hover:bg-blue-700');
+                }, 2000);
+            });
+        }
+    </script>
+</body>
+</html>
