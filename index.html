@@ -6,11 +6,17 @@
     <title>Licitaciones - SmartPro B2B</title>
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body class="bg-gray-50 text-gray-800 font-sans antialiased">
-    <div class="flex h-screen overflow-hidden">
+<body class="bg-gray-50 text-gray-800 font-sans antialiased pb-16 md:pb-0">
+    <div class="flex flex-col md:flex-row min-h-screen">
         
-        <!-- Sidebar -->
-        <aside class="w-64 bg-slate-900 text-white flex flex-col">
+        <!-- Header superior en móvil -->
+        <header class="md:hidden bg-slate-900 text-white p-4 flex justify-between items-center sticky top-0 z-20">
+            <h1 class="text-lg font-bold text-blue-400">SmartPro B2B</h1>
+            <div class="w-7 h-7 rounded-full bg-blue-500 flex items-center justify-center font-bold text-xs">H</div>
+        </header>
+
+        <!-- Sidebar en escritorio -->
+        <aside class="hidden md:flex w-64 bg-slate-900 text-white flex-col h-screen sticky top-0">
             <div class="p-6">
                 <h1 class="text-2xl font-bold tracking-tight text-blue-400">SmartPro B2B</h1>
                 <p class="text-xs text-slate-400 mt-1">Panel de Administrador</p>
@@ -32,18 +38,48 @@
         </aside>
 
         <!-- Contenido Central -->
-        <main class="flex-1 flex flex-col h-screen overflow-y-auto bg-gray-50">
-            <header class="bg-white shadow-sm border-b border-gray-200 px-8 py-4 flex justify-between items-center z-10">
-                <h2 class="text-xl font-semibold text-gray-800">Cotización Papelería Julio</h2>
-                <button class="bg-blue-600 hover:bg-blue-700 text-white px-5 py-2 rounded-lg text-sm font-medium">
+        <main class="flex-1 flex flex-col min-h-screen bg-gray-50">
+            <header class="bg-white shadow-sm border-b border-gray-200 p-4 md:px-8 md:py-4 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3">
+                <h2 class="text-lg md:text-xl font-semibold text-gray-800">Cotización Papelería Julio</h2>
+                <button class="w-full sm:w-auto bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg text-sm font-medium transition">
                     + Crear Nueva Licitación
                 </button>
             </header>
 
-            <div class="p-8">
-                <div class="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden mb-12">
+            <div class="p-4 md:p-8">
+                <!-- Vista Móvil: Tarjetas Apiladas (visible solo en celulares) -->
+                <div class="md:hidden space-y-4 mb-6">
+                    <div class="flex justify-between items-center">
+                        <span class="text-sm font-semibold text-gray-600">Ofertas recibidas (2)</span>
+                        <span class="bg-green-100 text-green-700 text-[11px] px-2 py-0.5 rounded-full font-bold">Completado</span>
+                    </div>
+
+                    <!-- Tarjeta Oferta Ganadora -->
+                    <div class="bg-white rounded-xl p-4 border-2 border-green-500 shadow-sm relative">
+                        <span class="absolute top-0 right-0 bg-green-500 text-white text-[10px] font-bold px-2.5 py-0.5 rounded-bl-lg">MEJOR OFERTA</span>
+                        <h4 class="font-bold text-gray-900 mt-1">Papelería Universal</h4>
+                        <p class="text-xs text-gray-500">100x Resmas de Papel Carta</p>
+                        <p class="text-2xl font-black text-green-600 my-2">$1.500.000</p>
+                        <button class="btnAprobarMovil w-full bg-green-600 hover:bg-green-700 text-white py-2.5 rounded-lg text-sm font-semibold transition">
+                            Aprobar y Autogenerar PDF
+                        </button>
+                    </div>
+
+                    <!-- Tarjeta Oferta Secundaria -->
+                    <div class="bg-white rounded-xl p-4 border border-gray-200 shadow-sm opacity-80">
+                        <h4 class="font-bold text-gray-800">Ferretería El Cóndor</h4>
+                        <p class="text-xs text-gray-500">100x Resmas de Papel Carta</p>
+                        <p class="text-xl font-bold text-gray-600 my-2">$1.600.000</p>
+                        <button class="w-full bg-gray-100 text-gray-600 py-2 rounded-lg text-xs font-semibold border border-gray-200">
+                            Rechazar
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Vista Escritorio: Tabla Comparativa (oculta en móvil) -->
+                <div class="hidden md:block bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden mb-12">
                     <div class="px-6 py-4 border-b border-gray-200 bg-gray-50 flex justify-between items-center">
-                        <h3 class="text-lg font-semibold text-gray-800">Comparativa de Ofertas Recibidas (3/3)</h3>
+                        <h3 class="text-lg font-semibold text-gray-800">Comparativa de Ofertas Recibidas</h3>
                         <span class="bg-green-100 text-green-700 text-xs px-3 py-1 rounded-full font-semibold">Análisis Completado</span>
                     </div>
                     
@@ -66,7 +102,6 @@
                         </table>
                     </div>
                     
-                    <!-- Botón con ID agregado -->
                     <div class="p-6 bg-white border-t border-gray-200 flex justify-end gap-4">
                         <button class="px-5 py-2 text-gray-600 bg-gray-100 hover:bg-gray-200 rounded-lg text-sm font-medium transition">Rechazar Todas</button>
                         <button id="btnAprobar" class="px-5 py-2 bg-green-600 hover:bg-green-700 text-white rounded-lg text-sm font-medium shadow-sm transition">Aprobar y Autogenerar PDF</button>
@@ -74,27 +109,39 @@
                 </div>
             </div>
         </main>
+
+        <!-- Barra Inferior en móvil -->
+        <nav class="md:hidden bg-white border-t border-gray-200 fixed bottom-0 w-full flex justify-around p-2 z-20">
+            <a href="index.html" class="flex flex-col items-center text-blue-600 font-bold p-1 text-[11px]">
+                <span>Licitaciones</span>
+            </a>
+            <a href="directorio.html" class="flex flex-col items-center text-gray-400 p-1 text-[11px]">
+                <span>Directorio</span>
+            </a>
+            <a href="reportes.html" class="flex flex-col items-center text-gray-400 p-1 text-[11px]">
+                <span>Reportes</span>
+            </a>
+        </nav>
     </div>
 
-    <!-- Script de interactividad -->
     <script>
-        const btnAprobar = document.getElementById('btnAprobar');
-        
-        if(btnAprobar) {
-            btnAprobar.addEventListener('click', function() {
-                // Cambia a estado de carga
-                this.textContent = 'Procesando PDF...';
-                this.classList.remove('bg-green-600', 'hover:bg-green-700');
-                this.classList.add('bg-gray-400', 'cursor-not-allowed');
-                
-                // Simula 2 segundos de carga y muestra el éxito
-                setTimeout(() => {
-                    this.textContent = '¡PDF Generado y Guardado!';
-                    this.classList.remove('bg-gray-400', 'cursor-not-allowed');
-                    this.classList.add('bg-blue-600', 'hover:bg-blue-700');
-                }, 2000);
-            });
+        function manejarAprobacion(btn) {
+            btn.textContent = 'Procesando PDF...';
+            btn.classList.remove('bg-green-600', 'hover:bg-green-700');
+            btn.classList.add('bg-gray-400', 'cursor-not-allowed');
+            
+            setTimeout(() => {
+                btn.textContent = '¡PDF Generado y Guardado!';
+                btn.classList.remove('bg-gray-400', 'cursor-not-allowed');
+                btn.classList.add('bg-blue-600', 'hover:bg-blue-700');
+            }, 2000);
         }
+
+        const btnDesktop = document.getElementById('btnAprobar');
+        if(btnDesktop) btnDesktop.addEventListener('click', () => manejarAprobacion(btnDesktop));
+
+        const btnMovil = document.querySelector('.btnAprobarMovil');
+        if(btnMovil) btnMovil.addEventListener('click', () => manejarAprobacion(btnMovil));
     </script>
 </body>
 </html>
